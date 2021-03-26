@@ -53,9 +53,9 @@ public class MostrarAgenda extends JFrame {
 	public MostrarAgenda()
 	{
 		super("Agenda");
-		// establish database connection and set up PreparedStatements
+		// establish database connection and set up PreparedStatements.
 		personQueries = new Queries();
-		// create GUI
+		// create GUI.
 		navigatePanel = new JPanel();
 		previousButton = new JButton();
 		indexTextField = new JTextField(2);
@@ -226,8 +226,8 @@ public class MostrarAgenda extends JFrame {
 				}
 				);
 		setVisible(true);
-	} // end constructor
-	// handles call when previousButton is clicked
+	} // end constructor.
+	// handles call when previousButton is clicked.
 	private void previousButtonActionPerformed(ActionEvent evt)
 	{
 		currentEntryIndex--;
@@ -236,7 +236,7 @@ public class MostrarAgenda extends JFrame {
 		indexTextField.setText("" + (currentEntryIndex + 1));
 		indexTextFieldActionPerformed(evt);
 	}
-	// handles call when nextButton is clicked
+	// handles call when nextButton is clicked.
 	private void nextButtonActionPerformed(ActionEvent evt)
 	{
 		currentEntryIndex++;
@@ -245,7 +245,7 @@ public class MostrarAgenda extends JFrame {
 		indexTextField.setText("" + (currentEntryIndex + 1));
 		indexTextFieldActionPerformed(evt);
 	}
-	// handles call when queryButton is clicked
+	// handles call when queryButton is clicked.
 	private void queryButtonActionPerformed(ActionEvent evt)
 	{
 		results =
@@ -268,7 +268,7 @@ public class MostrarAgenda extends JFrame {
 		else
 			browseButtonActionPerformed(evt);
 	}
-	// handles call when a new value is entered in indexTextField
+	// handles call when a new value is entered in indexTextField.
 	private void indexTextFieldActionPerformed(ActionEvent evt)
 	{
 		currentEntryIndex =
@@ -285,7 +285,7 @@ public class MostrarAgenda extends JFrame {
 			indexTextField.setText("" + (currentEntryIndex + 1));
 		}
 	}
-	// handles call when browseButton is clicked
+	// handles call when browseButton is clicked.
 	private void browseButtonActionPerformed(ActionEvent evt)
 	{
 		try
@@ -312,7 +312,7 @@ public class MostrarAgenda extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	// handles call when insertButton is clicked
+	// handles call when insertButton is clicked.
 	private void insertButtonActionPerformed(ActionEvent evt)
 	{
 		int result = personQueries.addPerson(firstNameTextField.getText(),
@@ -327,7 +327,7 @@ public class MostrarAgenda extends JFrame {
 		browseButtonActionPerformed(evt);
 	}
 
-	// handles call when updateButton is clicked
+	// handles call when updateButton is clicked.
 	private void updateButtonActionPerformed(ActionEvent evt)
 	{
 		int result = personQueries.updatePerson(firstNameTextField.getText(),
@@ -342,10 +342,11 @@ public class MostrarAgenda extends JFrame {
 		browseButtonActionPerformed(evt);
 	}
 
-	// handles call when deleteButton is clicked
+	// handles call when deleteButton is clicked.
 	private void deleteButtonActionPerformed(ActionEvent evt)
 	{
 		int result = personQueries.deletePerson(Integer.parseInt(idTextField.getText())); 
+
 		if (result == 1)
 			JOptionPane.showMessageDialog(this, "Person Deleted!",
 					"Person Deleted", JOptionPane.PLAIN_MESSAGE);

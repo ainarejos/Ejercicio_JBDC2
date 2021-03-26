@@ -15,7 +15,7 @@ public class Queries {
 	private static final String USERNAME = "alumne";
 	private static final String PASSWORD = "tofol";
 
-		private Connection connection; // manages connection
+		private Connection connection; // manages connection.
 		private PreparedStatement selectAllPeople;
 		private PreparedStatement selectPeopleByLastName;
 		private PreparedStatement insertNewPerson;
@@ -28,25 +28,25 @@ public class Queries {
 			try {
 				connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
-				// create query that selects all entries in the AddressBook
+				// create query that selects all entries in the AddressBook.
 				selectAllPeople = connection.prepareStatement("SELECT * FROM ADDRESSES");
 
-				// create query that selects entries with a specific last name
+				// create query that selects entries with a specific last name.
 				selectPeopleByLastName = connection.prepareStatement("SELECT * FROM ADDRESSES WHERE LastName = ?");
 
-				// create insert that adds a new entry into the database
+				// create insert that adds a new entry into the database.
 				insertNewPerson = connection.prepareStatement(
 						"INSERT INTO ADDRESSES " + "(FirstName, LastName, Email, PhoneNumber, AddressID) " + "VALUES (?, ?, ?, ?, ?)");
 
-				// create statement that updates entry in database
+				// create statement that updates entry into the database.
 				updatePerson = connection.prepareStatement(
 						"UPDATE ADDRESSES SET FirstName = ?, LastName = ?, Email = ?, PhoneNumber = ? WHERE AddressID = ?");
 				
-				// create statement that deletes entry from database
+				// create statement that deletes entry from database.
 				deletePerson = connection.prepareStatement(
 						"DELETE FROM ADDRESSES WHERE AddressID = ?");
 				
-				// create statement that get the last id from clients
+				// create statement that get the last id from persons.
 				getMaxID = connection.prepareStatement(
 						"Select MAX(AddressID) as AddressID FROM ADDRESSES");
 				
@@ -62,7 +62,7 @@ public class Queries {
 			ResultSet resultSet = null;
 
 			try {
-				// executeQuery returns ResultSet containing matching entries
+				// executeQuery returns ResultSet containing matching entries.
 				resultSet = selectAllPeople.executeQuery();
 				results = new ArrayList<Persona>();
 
@@ -85,7 +85,7 @@ public class Queries {
 			return results;
 		}
 
-		// select person by last name
+		// select person by last name.
 		public List<Persona> getPeopleByLastName(String name) {
 			List<Persona> results = null;
 			ResultSet resultSet = null;
@@ -93,7 +93,7 @@ public class Queries {
 			try {
 				selectPeopleByLastName.setString(1, name); // specify last name
 
-				// executeQuery returns ResultSet containing matching entries
+				// executeQuery returns ResultSet containing matching entries.
 				resultSet = selectPeopleByLastName.executeQuery();
 
 				results = new ArrayList<Persona>();
@@ -117,11 +117,11 @@ public class Queries {
 			return results;
 		}
 
-		// add an entry
+		// add an entry.
 		public int addPerson(String fname, String lname, String email, String num, int id) {
 			int result = 0;
 
-			// set parameters, then execute insertNewPerson
+			// set parameters, then execute insertNewPerson.
 			try {
 				insertNewPerson.setString(1, fname);
 				insertNewPerson.setString(2, lname);
@@ -129,7 +129,7 @@ public class Queries {
 				insertNewPerson.setString(4, num);
 				insertNewPerson.setInt(5, id);
 
-				// insert the new entry; returns # of rows updated
+				// insert the new entry; returns # of rows updated.
 				result = insertNewPerson.executeUpdate();
 			} catch (SQLException sqlException) {
 				sqlException.printStackTrace();
@@ -143,7 +143,6 @@ public class Queries {
 		public int updatePerson(String fname, String lname, String email, String num, int id) {
 			int result = 0;
 
-			// set parameters, then execute updatePerson
 			try {
 				updatePerson.setString(1, fname);
 				updatePerson.setString(2, lname);
@@ -151,7 +150,6 @@ public class Queries {
 				updatePerson.setString(4, num);
 				updatePerson.setInt(5, id);
 
-				// update entry; returns # of rows updated
 				result = updatePerson.executeUpdate();
 			} catch (SQLException sqlException) {
 				sqlException.printStackTrace();
@@ -165,7 +163,6 @@ public class Queries {
 		public int deletePerson(int id) {
 			int result = 0;
 
-			// delete the person.
 			try {
 				deletePerson.setInt(1, id);
 
@@ -192,7 +189,7 @@ public class Queries {
 			return 1;
 		} 
 
-		// close the database connection
+		// close the database connection.
 		public void close() {
 			try {
 				connection.close();
